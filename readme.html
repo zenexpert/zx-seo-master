@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZX SEO Master - Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+
+        main {
+            background-color: #fff;
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            position: relative;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5em;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f7fa;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 1.5em 0;
+            padding: 0.5em 1em;
+            background-color: #f4f8fa;
+            color: #555;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #27ae60;
+            border-radius: 12px;
+        }
+
+        .back-to-top {
+            font-size: 14px;
+            font-weight: normal;
+            float: right;
+            text-decoration: none;
+            color: #3498db;
+            margin-top: 6px;
+        }
+
+        .back-to-top:hover {
+            text-decoration: underline;
+        }
+        .meta-header {
+            display: flex;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 1.5em 0;
+        }
+        .meta-left {
+            flex: 0 0 35%;
+            padding: 15px;
+            border-right: 1px solid #ddd;
+        }
+        .meta-right {
+            flex: 1;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .meta-header {
+                flex-direction: column;
+            }
+            .meta-left {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<main id="top">
+    <h1>ZX SEO Master</h1>
+
+    <div class="meta-header">
+        <div class="meta-left">
+            <strong>Version:</strong> 1.0.0<br>
+            <strong>Release Date:</strong> August 10, 2026<br>
+            <strong>Platform:</strong> Zen Cart 2.x<br>
+            <strong>Architecture:</strong> Encapsulated Plugin, Observer-Based<br>
+            <strong>Author:</strong> Leonard, ZenExpert<br>
+            <strong>Contact:</strong> <a href="mailto:info@zenexpert.com">e-mail me</a> (considered as quote requests)
+        </div>
+        <div class="meta-right">
+            Thank you for downloading this plugin. Please note that this plugin is installed and used at your own risk. If you are unsure of how to complete the installation procedure documented below, please seek support in the official Forum section (keep in mind Forums are public and work on voluntary basis) or contact me for paid assistance. ZenExpert takes no responsibility for problems related to the installation or use of this plugin.
+        </div>
+    </div>
+
+    <p>ZX SEO Master is a comprehensive, enterprise-grade technical on-site SEO auditing and configuration suite built
+        exclusively for modern Zen Cart environments. Engineered with strict encapsulation, it centralizes all metadata,
+        content analysis, redirects, and automated indexing into a single, seamless dashboard.</p>
+
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#features-usage">Features &amp; Usage</a>
+            <ul>
+                <li><a href="#global-settings">Global Settings &amp; IndexNow</a></li>
+                <li><a href="#metadata-editor">Metadata Editor &amp; Dynamic Tags</a></li>
+                <li><a href="#plugin-integrations">Dynamic Plugin Integrations</a></li>
+                <li><a href="#meta-audit">Meta Audit</a></li>
+                <li><a href="#content-analysis">Content Analysis</a></li>
+                <li><a href="#real-time-analyzer">Real-Time Product SEO Analyzer</a></li>
+                <li><a href="#redirects">301 Redirects</a></li>
+                <li><a href="#site-tools">Site Tools &amp; Migrations</a></li>
+                <li><a href="#llms-txt">LLMS.txt Generator</a></li>
+            </ul>
+        </li>
+        <li><a href="#common-issues">Common Issues</a></li>
+        <li><a href="#sources-credits">Sources and Credits</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#license">License</a></li>
+    </ul>
+
+    <h2 id="installation">Installation <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>ZX SEO Master is built as a strict <strong>Encapsulated Plugin</strong> for Zen Cart 2.x. It utilizes
+        reference-based observers and a self-contained directory structure, guaranteeing absolutely zero core file
+        modifications.</p>
+    <ol>
+        <li>Backup your database.</li>
+        <li>Upload the <code>zx_seo_master</code> folder to your store's <code>zc_plugins</code> directory.</li>
+        <li>Navigate to your Zen Cart Admin and go to <strong>Plugins &gt; Plugin Manager</strong>.</li>
+        <li>Locate ZX SEO Master and click <strong>Install</strong>. The necessary database tables (<code>zx_seo_metadata</code>,
+            <code>zx_seo_redirects</code>, <code>zx_seo_master_globals</code>) and configuration keys will automatically
+            generate.
+        </li>
+        <li>Access the dashboard via <strong>Tools &gt; ZX SEO Master</strong>.</li>
+    </ol>
+
+    <h2 id="features-usage">Features &amp; Usage <a href="#top" class="back-to-top">&uarr; top</a></h2>
+
+    <h3 id="global-settings">Global Settings &amp; IndexNow</h3>
+    <p>Manage your storefront's overarching SEO parameters:</p>
+    <ul>
+        <li><strong>Store Formatting:</strong> Define global title tags, taglines, and separator formatting strings
+            (e.g., <code>Title - Tagline</code>) with full multi-language support.
+        </li>
+        <li><strong>Homepage Overrides:</strong> Set strict meta titles and descriptions explicitly for your catalog
+            index.
+        </li>
+        <li><strong>Global Code Injection:</strong> Safely inject verification tags (like Google Site Verification) into
+            the document <code>&lt;head&gt;</code> and tracking scripts into the global footer.
+        </li>
+        <li><strong>IndexNow API:</strong> Automatically ping major search engines (Bing, Yandex, Seznam) when content
+            changes. The system automatically generates and manages your verification <code>.txt</code> key file at the
+            catalog root.
+        </li>
+    </ul>
+
+    <h3 id="metadata-editor">Metadata Editor &amp; Dynamic Tags</h3>
+    <p>A centralized hub to override native data. Data saved here acts as the supreme authority on your storefront,
+        overriding default database tables.</p>
+    <ul>
+        <li><strong>Dynamic Tag Injection:</strong> Use quick-insert buttons to inject variables like <code>%PRODUCT_NAME%</code>,
+            <code>%PRODUCT_PRICE%</code>, and <code>%SITE_TAGLINE%</code> directly into your titles and descriptions.
+        </li>
+        <li><strong>Live Snippet Preview:</strong> As you type or insert tags, a Google search snippet preview instantly
+            renders the <em>parsed</em> data (e.g., swapping out <code>%PRODUCT_NAME%</code> for the actual product
+            name) so you can see exactly how it will appear in search results.
+        </li>
+        <li><strong>Smart Character Counting:</strong> The real-time character counter dynamically evaluates the length
+            of the parsed output, not the raw tag text, giving you perfectly accurate length warnings.
+        </li>
+        <li><strong>AJAX Entity Search:</strong> Rapidly search for Products, Categories, EZ-Pages, and Manufacturers
+            directly from the dashboard.
+        </li>
+        <li><strong>Multi-Lingual Editing:</strong> Manage Titles, Meta Descriptions, and Focus Keywords seamlessly
+            across all installed languages.
+        </li>
+        <li><strong>Advanced Directives:</strong> Set Custom Canonical URLs, and apply explicit <code>noindex</code> and
+            <code>nofollow</code> robots directives on a per-page basis.
+        </li>
+        <li><strong>Automatic Routing:</strong> Clicking the native Zen Cart "Edit Meta Tags" button on any product or
+            category listing will automatically intercept the request and route you directly to this centralized editor.
+        </li>
+    </ul>
+
+    <h3 id="plugin-integrations">Dynamic Plugin Integrations</h3>
+    <p>ZX SEO Master actively detects popular third-party modules and pulls their configuration settings directly into
+        the master dashboard, preventing you from hunting through native menus. Supported integrations include:</p>
+    <ul>
+        <li><strong>Ultimate SEO URLs (USU)</strong></li>
+        <li><strong>Ceon URI Mapping</strong> (Provides a direct dashboard link)</li>
+        <li><strong>Torvista's Structured Data (JSON-LD)</strong></li>
+        <li><strong>lat9's GA4 Analytics</strong></li>
+    </ul>
+
+    <h3 id="meta-audit">Meta Audit</h3>
+    <p>Run a real-time database scan to identify active products and categories missing crucial Meta Descriptions. Click
+        <strong>Fix Now</strong> on any flagged entity to instantly load it into the Metadata Editor for correction.</p>
+
+    <h3 id="content-analysis">Content Analysis</h3>
+    <p>Test your content against modern SEO parameters using a specific Focus Keyword directly from the dashboard. The
+        analyzer cross-references your custom <code>zx_seo_metadata</code> tables and native tables to score:</p>
+    <ul>
+        <li>Title and Description optimal character lengths.</li>
+        <li>Exact keyword matches within metadata.</li>
+        <li>Content keyword density.</li>
+    </ul>
+
+    <h3 id="real-time-analyzer">Real-Time Product SEO Analyzer (Sidebox)</h3>
+    <p>In addition to the central dashboard, ZX SEO Master injects a dynamic, slide-out SEO analyzer directly into your
+        standard Zen Cart product editing pages.</p>
+    <ul>
+        <li><strong>Live Google Snippet Preview:</strong> See exactly how your product will appear in search results as
+            you type.
+        </li>
+        <li><strong>Real-Time Content Scoring:</strong> Instantly evaluates your product description for word count,
+            readability, and sentence length. Fully supports and hooks into CKEditor if installed.
+        </li>
+        <li><strong>Keyword Density Tracking:</strong> Enter a focus keyword to immediately see its density within your
+            content and meta tags. Automatically pulls from your saved <code>zx_seo_metadata</code> authority tables if
+            a focus keyword was previously assigned.
+        </li>
+        <li><strong>Link Auditing:</strong> Automatically detects and tallies internal links versus external outbound
+            links within your description HTML.
+        </li>
+    </ul>
+
+    <h3 id="redirects">301 Redirects</h3>
+    <p>A robust URL redirection manager that intercepts broken or outdated links and passes link equity to new
+        destinations.</p>
+    <ul>
+        <li>Safely strips absolute paths down to relative paths to prevent routing errors.</li>
+        <li>Includes <strong>Collision Detection</strong>: Warns the administrator and requires explicit overwrite
+            confirmation if a source URL is already mapped in the database.
+        </li>
+        <li>Includes pagination and a search filter for managing large redirect tables.</li>
+    </ul>
+
+    <h3 id="site-tools">Site Tools &amp; Migrations</h3>
+    <ul>
+        <li><strong>XML Sitemap Generator:</strong> 1-click generation of <code>sitemapindex.xml</code>. Includes a
+            quick-copy button to append the sitemap declaration to your robots file.
+        </li>
+        <li><strong>Robots.txt Editor:</strong> Read, edit, and save your <code>robots.txt</code> file directly from the
+            admin panel.
+        </li>
+        <li><strong>Data Migration Tool:</strong> A one-way, non-destructive import routine. Automatically pulls legacy
+            native Zen Cart product and category meta tags into the master <code>zx_seo_metadata</code> tables so all
+            SEO data exists in one place.
+        </li>
+    </ul>
+
+    <h3 id="llms-txt">LLMS.txt Generator</h3>
+    <p>Ensure Large Language Models (like ChatGPT, Claude, and Gemini) properly index and cite your store's information.
+        ZX SEO Master includes a dedicated interface to construct an <code>llms.txt</code> file.</p>
+    <ul>
+        <li>Define positive guidance rules for AI crawlers.</li>
+        <li>Highlight priority pages, specific category paths, and brand endpoints.</li>
+        <li>Instruct AI to de-emphasize low-value pages (like search queries and thin content).</li>
+    </ul>
+
+    <h2 id="common-issues">Common Issues <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>None reported so far.</p>
+
+    <h2 id="sources-credits">Sources and Credits <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>External libraries used in this plugin: none</p>
+    <p>If you find this module useful, <a href="https://zenexpert.com/shop/donations/donation" target="_blank"><strong>please consider donating via PayPal</strong></a> to ensure this module is supported and
+        improved ($10 - $30 recommended).</p>
+
+    <h2 id="support">Support <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>This plugin comes with limited support. There is an official support thread on the public Forum, but keep in mind
+        that support is on voluntary basis so you might have to wait a while before your question gets answered.</p>
+    <p>Please note that I don't provide support for this module via email for free. Any private support is considered
+        commercial work and will be billed at my standard hourly rate.</p>
+    <p>Stay up-to-date: you can always find the most recent version <a href="https://zenexpert.com/seo-master" target="_blank">here</a>.</p>
+    <p>One question that is often asked - "will the plugin work with a new (future) version of Zen Cart?". Well, give me
+        a minute to pull out my magic crystal ball and see what the future brings... There is no way to guarantee future
+        compatibility, but I'll do my best to keep it compatible with future versions of Zen Cart.</p>
+
+    <h2 id="license">License <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>The plugin is licensed under GPL.</p>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;">
+    <p>Once again, thank you for downloading this file. As I said at the beginning, I'd be glad to help you if you have
+        any questions relating to this plugin. No guarantees, but I'll do my best to assist.</p>
+
+    <p>Regards,<br>Leonard</p>
+
+</main>
+
+</body>
+</html>
