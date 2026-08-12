@@ -118,6 +118,7 @@ $define = [
     'SUCCESS_INDEXNOW_SAVED' => 'Success: IndexNow settings saved and new %s.txt verification file created.',
     'WARNING_INDEXNOW_SAVED' => 'Warning: Key saved, but catalog root is not writable. You must manually create %s.txt in your storefront root.',
     'SUCCESS_INDEXNOW_UPDATED' => 'Success: IndexNow settings have been successfully updated.',
+    'ERROR_INDEXNOW_INVALID_ENDPOINT' => 'Error: The submitted IndexNow endpoint is not on the list of supported services. Your previous endpoint setting was kept.',
     'SUCCESS_MIGRATE_META' => 'Success: %s native meta tag records were successfully imported into ZX SEO Master.',
     'SUCCESS_MIGRATE_META_INFO' => 'Notice: No new native meta tags were found to import. Your custom tables are up to date.',
     'SUCCESS_USU_UPDATED' => 'Success: Ultimate URLs configuration updated.',
