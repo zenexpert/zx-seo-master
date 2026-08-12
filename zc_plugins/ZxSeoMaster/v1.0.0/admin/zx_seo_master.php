@@ -1132,7 +1132,6 @@ foreach ($globals_query as $global) {
                                 </div>
                                 <div class="panel-body">
                                     <?= zen_draw_form('save_globals_form', FILENAME_ZX_SEO_MASTER, 'action=save_globals', 'post') ?>
-                                    <?= zen_draw_hidden_field('securityToken', $_SESSION['securityToken']) ?>
 
                                     <!-- Language Tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
