@@ -22,11 +22,38 @@ class zcObserverIndexNow extends base
             ]
         );
 
+        $this->detectLocalDevelopmentEnvironment();
+        $this->interceptStatusToggleRequest();
+    }
+
+    /**
+     * Suppresses IndexNow submissions when running on a local/dev copy of the store, so
+     * developing against a copy of live data never pings a real search engine. 
+     * Checks once up front so every submission path (constructor-intercepted or update()-triggered)
+     * shares the same message.
+     */
+    private function detectLocalDevelopmentEnvironment(): void
+    {
         if (file_exists('../includes/local/configure.php')) {
             $this->noSubmitMessage = ' (local dev)';
         }
+    }
 
-        // capture product status before a standard product edit is saved
+    /**
+     * Reacts to the product/category status-toggle requests that ZX SEO Master's own admin JS
+     * (category_product_listing.php) appends `&indexnow=1` to once the admin confirms
+     * submission via the IndexNow dialog.
+     *
+     * This has to inspect the raw request directly (rather than attach()-ing to a notifier
+     * like the rest of this class does) because Zen Cart core fires no event around either the
+     * product "setflag" action or the categories status-toggle confirmation screen - there is
+     * nothing to subscribe to for those two flows. 
+     * It's a no-op on every admin page load except the two specific action/param combinations below.
+     */
+    private function interceptStatusToggleRequest(): void
+    {
+        // capture product status before a standard product edit is saved, so update() can
+        // later tell whether NOTIFY_MODULES_UPDATE_PRODUCT_END represents an actual change
         if (isset($_GET['action']) && $_GET['action'] === 'update_product' && isset($_GET['pID'])) {
             global $db;
             $pID = (int)$_GET['pID'];
