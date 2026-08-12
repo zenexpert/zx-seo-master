@@ -1180,11 +1180,11 @@ foreach ($globals_query as $global) {
                                                             </div>
                                                             <div class="form-group">
                                                                 <label><?= TEXT_LABEL_HOME_PAGE_DESCRIPTION ?></label>
-                                                                <?= zen_draw_textarea_field("global_seo[{$lID}][HOME_PAGE_META_DESCRIPTION]", 'soft', '100%', '3', $seo_globals[$lID]['HOME_PAGE_META_DESCRIPTION'] ?? '', 'class="form-control"') ?>
+                                                                <?= zen_draw_textarea_field("global_seo[{$lID}][HOME_PAGE_META_DESCRIPTION]", 'soft', '100%', '3', htmlspecialchars($seo_globals[$lID]['HOME_PAGE_META_DESCRIPTION'] ?? '', ENT_QUOTES, CHARSET), 'class="form-control"') ?>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label><?= TEXT_LABEL_HOME_PAGE_KEYWORDS ?></label>
-                                                                <?= zen_draw_textarea_field("global_seo[{$lID}][HOME_PAGE_META_KEYWORDS]", 'soft', '100%', '2', $seo_globals[$lID]['HOME_PAGE_META_KEYWORDS'] ?? '', 'class="form-control"') ?>
+                                                                <?= zen_draw_textarea_field("global_seo[{$lID}][HOME_PAGE_META_KEYWORDS]", 'soft', '100%', '2', htmlspecialchars($seo_globals[$lID]['HOME_PAGE_META_KEYWORDS'] ?? '', ENT_QUOTES, CHARSET), 'class="form-control"') ?>
                                                             </div>
                                                         </fieldset>
                                                     </div>
@@ -1473,7 +1473,7 @@ foreach ($globals_query as $global) {
                                         <div class="form-group">
                                             <?= zen_draw_label(TEXT_META_DESCRIPTION, 'meta_description_' . $lID, 'class="control-label"') ?>
                                             <div class="pull-right small"><?= TEXT_META_TITLE_CHARS ?><span id="meta_description_count_<?= $lID; ?>">0</span> / 160</div>
-                                            <?= zen_draw_textarea_field("seo_meta[{$lID}][meta_description]", 'soft', '100%', '4', $entity_metadata[$lID]['meta_description'] ?? '', 'class="form-control meta-desc-input" id="meta_description_' . $lID . '" data-lang="' . $lID . '" data-max="160"') ?>
+                                            <?= zen_draw_textarea_field("seo_meta[{$lID}][meta_description]", 'soft', '100%', '4', htmlspecialchars($entity_metadata[$lID]['meta_description'] ?? '', ENT_QUOTES, CHARSET), 'class="form-control meta-desc-input" id="meta_description_' . $lID . '" data-lang="' . $lID . '" data-max="160"') ?>
                                         </div>
 
                                         <!-- live Google Snippet preview -->
@@ -2028,7 +2028,7 @@ foreach ($globals_query as $global) {
                             ?>
                             <?php echo zen_draw_form('zx_seo_robots', FILENAME_ZX_SEO_MASTER, 'action=save_robots', 'post'); ?>
                             <div class="form-group">
-                                <?php echo zen_draw_textarea_field('robots_content', 'soft', '100%', '15', $robotsContent, 'class="form-control monospace"'); ?>
+                                <?php echo zen_draw_textarea_field('robots_content', 'soft', '100%', '15', htmlspecialchars($robotsContent, ENT_QUOTES, CHARSET), 'class="form-control monospace"'); ?>
                             </div>
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary"><?= BUTTON_SAVE_ROBOTSTXT ?></button>
