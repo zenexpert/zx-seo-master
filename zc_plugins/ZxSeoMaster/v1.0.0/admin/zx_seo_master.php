@@ -566,13 +566,17 @@ switch ($action) {
     case 'save_llms':
         $file_path = DIR_FS_CATALOG . 'llms.txt';
 
-        $site_name = zen_db_prepare_input($_POST['site_name']);
+        // site_name/description/custom_guidance are already HTML-entity-encoded by this point.
+        // Decode before handing them to LlmsTxtGenerator, which applies its own 
+        // markdown-specific escaping (sanitizeMarkdown()) and expects real characters, 
+        // otherwise a name/value containing &, <, >, ' or " renders as literal &amp;/&lt; garbage in the generated llms.txt.
+        $site_name = htmlspecialchars_decode(zen_db_prepare_input($_POST['site_name']));
         $description = htmlspecialchars_decode(zen_db_prepare_input($_POST['description']));
 
         $generator = new LlmsTxtGenerator($site_name, $description);
 
         // Positive Guidance
-        $custom_guidance = zen_db_prepare_input($_POST['custom_guidance']);
+        $custom_guidance = htmlspecialchars_decode(zen_db_prepare_input($_POST['custom_guidance']));
         if (isset($_POST['guidance_options']) && is_array($_POST['guidance_options'])) {
             // Re-map default guidance for the controller scope
             $default_guidance = [
