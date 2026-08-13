@@ -212,18 +212,21 @@ switch ($action) {
             foreach ($seo_meta as $langId => $data) {
                 $safeLangId = (int)$langId;
 
-                // seo_meta[] is submitted nested (seo_meta[langId][meta_title]), which
-                // AdminRequestSanitizer's registration for 'meta_title' etc can't match,
-                // so these fall through to core's default strict sanitization and arrive HTML-entity-encoded.
-                // meta_description is decoded here because it's redisplayed via a <textarea> that 
-                // escapes on render (see the Metadata Editor tab below). And we want to avoid double-encode
-                // 
-                // meta_title/focus_keyword/custom_canonical have the same underlying defect
-                // but are tracked separately (they're <input> fields, not <textarea>).
-                $metaTitle = zen_db_prepare_input($data['meta_title'] ?? '');
+                /**
+                 * AdminRequestSanitizer's registration for 'meta_title' etc can't match,
+                 * so these fall through to core's default strict sanitization and arrive HTML-entity-encoded.
+                 * All are decoded here so the stored value matches what the admin actually typed:
+                 * meta_title/focus_keyword/custom_canonical render via <input> fields, which
+                 * always html-escape their value on redisplay (zen_draw_input_field())
+                 * regardless of what's stored, so without this any of them containing &, <, >, or " 
+                 * showed as literal &amp;/&lt; garbage in the edit form. 
+                 * meta_description renders via a <textarea> that escapes on render instead 
+                 * (see the Metadata Editor tab below) - same reasoning, different field type.
+                 */
+                $metaTitle = htmlspecialchars_decode(zen_db_prepare_input($data['meta_title'] ?? ''));
                 $metaDescription = htmlspecialchars_decode(zen_db_prepare_input($data['meta_description'] ?? ''));
-                $focusKeyword = zen_db_prepare_input($data['focus_keyword'] ?? '');
-                $customCanonical = zen_db_prepare_input($data['custom_canonical'] ?? '');
+                $focusKeyword = htmlspecialchars_decode(zen_db_prepare_input($data['focus_keyword'] ?? ''));
+                $customCanonical = htmlspecialchars_decode(zen_db_prepare_input($data['custom_canonical'] ?? ''));
                 $isNoindex = isset($data['is_noindex']) ? 1 : 0;
                 $isNofollow = isset($data['is_nofollow']) ? 1 : 0;
 
@@ -471,13 +474,6 @@ switch ($action) {
         // define which keys are allowed to contain leading/trailing spaces
         $divider_keys = ['PRIMARY_SECTION', 'SECONDARY_SECTION', 'TERTIARY_SECTION', 'METATAGS_DIVIDER'];
 
-        // global_seo[] is submitted nested (global_seo[langId][KEY]), and none of its keys are
-        // registered with AdminRequestSanitizer, so all are HTML-entity-encoded by core processing.
-        // These two are decoded here because they're redisplayed via <textarea> fields that escape on render 
-        // (Global Settings tab below) - an encode-then-escape would double up. The other global_seo keys
-        // have the same underlying defect but are <input> fields, tracked separately.
-        $decode_keys = ['HOME_PAGE_META_DESCRIPTION', 'HOME_PAGE_META_KEYWORDS'];
-
         foreach ($global_seo as $lang_id => $keys) {
             $safe_lang_id = (int)$lang_id;
             foreach ($keys as $key => $value) {
@@ -490,9 +486,8 @@ switch ($action) {
                     $safe_value = zen_db_prepare_input($value);
                 }
 
-                if (in_array($safe_key, $decode_keys, true)) {
-                    $safe_value = htmlspecialchars_decode($safe_value);
-                }
+                // prevent double-encoding.
+                $safe_value = htmlspecialchars_decode($safe_value);
 
                 // insert or update the value for the specific language
                 $db->Execute("INSERT INTO " . TABLE_ZX_SEO_MASTER_GLOBALS . "
