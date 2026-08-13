@@ -427,7 +427,8 @@ switch ($action) {
         break;
 
     case 'delete_redirect':
-        $rID = (int)($_GET['rID'] ?? 0);
+        // deletes must be a form POST
+        $rID = ($_SERVER['REQUEST_METHOD'] === 'POST') ? (int)($_POST['rID'] ?? 0) : 0;
         if ($rID > 0) {
             $db->Execute("DELETE FROM " . TABLE_ZX_SEO_REDIRECTS . " WHERE id = " . $rID);
             $messageStack->add_session(SUCCESS_REDIRECT_DELETED, 'success');
@@ -1958,7 +1959,10 @@ foreach ($globals_query as $global) {
                                             <td style="word-break: break-all;"><?php echo zen_output_string_protected($r['target_url']); ?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo zen_href_link(FILENAME_ZX_SEO_MASTER, 'action=edit_redirect&rID=' . $r['id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . '#redirects'); ?>" class="btn btn-xs btn-default" title="<?= ICON_EDIT ?>"><i class="fa fa-pencil"></i></a>
-                                                <a href="<?php echo zen_href_link(FILENAME_ZX_SEO_MASTER, 'action=delete_redirect&rID=' . $r['id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . '#redirects'); ?>" class="btn btn-xs btn-danger" title="<?= ICON_DELETE ?>" onclick="return confirm('<?= TEXT_REDIRECT_DELETE_CONFIRM ?>');"><i class="fa fa-trash"></i></a>
+                                                <?php echo zen_draw_form('delete_redirect_' . $r['id'], FILENAME_ZX_SEO_MASTER, 'action=delete_redirect#redirects', 'post', 'style="display:inline;"'); ?>
+                                                <?php echo zen_draw_hidden_field('rID', $r['id']); ?>
+                                                <button type="submit" class="btn btn-xs btn-danger" title="<?= ICON_DELETE ?>" onclick="return confirm('<?= TEXT_REDIRECT_DELETE_CONFIRM ?>');"><i class="fa fa-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php } ?>
