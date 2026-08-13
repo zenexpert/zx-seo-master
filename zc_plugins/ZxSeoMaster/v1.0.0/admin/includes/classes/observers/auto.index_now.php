@@ -9,6 +9,18 @@ declare(strict_types=1);
  */
 class zcObserverIndexNow extends base
 {
+    /**
+     * Defense-in-depth: we only ever contact a known IndexNow-participating service,
+     * even if ZX_INDEXNOW_ENDPOINT somehow holds something else. 
+     * Keep in sync with the $zxIndexNowEndpoints list in admin/zx_seo_master.php.
+     */
+    private const ALLOWED_ENDPOINTS = [
+        'https://www.bing.com/indexnow',
+        'https://api.indexnow.org/indexnow',
+        'https://yandex.com/indexnow',
+        'https://search.seznam.cz/indexnow',
+    ];
+
     private string $noSubmitMessage = '';
     private array $previous_product_status = [];
 
@@ -178,6 +190,11 @@ class zcObserverIndexNow extends base
         $indexnow_key = trim(ZX_INDEXNOW_KEY);
         $endpoint = defined('ZX_INDEXNOW_ENDPOINT') ? ZX_INDEXNOW_ENDPOINT : 'https://api.indexnow.org/indexnow';
 
+        if (!in_array($endpoint, self::ALLOWED_ENDPOINTS, true)) {
+            $messageStack->add_session("IndexNow Batch NOT submitted: configured endpoint is not on the supported list.", 'error');
+            return;
+        }
+
         // decode &amp; back to standard & for all URLs
         $clean_urls = array_map('htmlspecialchars_decode', $urls);
 
@@ -224,6 +241,11 @@ class zcObserverIndexNow extends base
 
         $indexnow_key = trim(ZX_INDEXNOW_KEY);
         $endpoint = defined('ZX_INDEXNOW_ENDPOINT') ? ZX_INDEXNOW_ENDPOINT : 'https://api.indexnow.org/indexnow';
+
+        if (!in_array($endpoint, self::ALLOWED_ENDPOINTS, true)) {
+            $messageStack->add_session("IndexNow url NOT submitted: configured endpoint is not on the supported list.", 'error');
+            return;
+        }
 
         $query = http_build_query([
             'url' => $url,

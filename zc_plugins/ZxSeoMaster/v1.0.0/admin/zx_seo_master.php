@@ -192,6 +192,15 @@ if ($entityId > 0) {
 
 $robotsPath = DIR_FS_CATALOG . 'robots.txt';
 
+// Allow-list of IndexNow endpoints. Only known IndexNow-participating services may ever be persisted here
+// This should never be an arbitrary admin-supplied URL.
+$zxIndexNowEndpoints = [
+    ['id' => 'https://www.bing.com/indexnow', 'text' => 'Bing (bing.com)'],
+    ['id' => 'https://api.indexnow.org/indexnow', 'text' => 'IndexNow (api.indexnow.org)'],
+    ['id' => 'https://yandex.com/indexnow', 'text' => 'Yandex (yandex.com)'],
+    ['id' => 'https://search.seznam.cz/indexnow', 'text' => 'Seznam (seznam.cz)'],
+];
+
 // actions
 switch ($action) {
     case 'save':
@@ -479,7 +488,18 @@ switch ($action) {
 
     case 'save_indexnow':
         $indexNowStatus = $_POST['indexnow_status'] === 'true' ? 'true' : 'false';
-        $indexNowEndpoint = trim($_POST['indexnow_endpoint'] ?? 'https://www.bing.com/indexnow');
+
+        // only accept endpoints from the known IndexNow allow-list; anything else is rejected
+        // rather than persisted, since it is pinged automatically on every product/category save.
+        $submittedEndpoint = trim($_POST['indexnow_endpoint'] ?? '');
+        $allowedIndexNowEndpoints = array_column($zxIndexNowEndpoints, 'id');
+        if (in_array($submittedEndpoint, $allowedIndexNowEndpoints, true)) {
+            $indexNowEndpoint = $submittedEndpoint;
+        } else {
+            $indexNowEndpoint = defined('ZX_INDEXNOW_ENDPOINT') ? ZX_INDEXNOW_ENDPOINT : $allowedIndexNowEndpoints[0];
+            $messageStack->add_session(ERROR_INDEXNOW_INVALID_ENDPOINT, 'error');
+        }
+
         $newKey = preg_replace('/[^a-zA-Z0-9-]/', '', $_POST['indexnow_key'] ?? '');
 
         // get the current key to compare
@@ -1316,14 +1336,8 @@ foreach ($globals_query as $global) {
                                         <div class="col-md-6 form-group">
                                             <label for="indexnow_endpoint"><?= TEXT_LABEL_INDEXNOW_ENDPOINT ?></label>
                                             <?php
-                                            $endpointOptions = [
-                                                ['id' => 'https://www.bing.com/indexnow', 'text' => 'Bing (bing.com)'],
-                                                ['id' => 'https://api.indexnow.org/indexnow', 'text' => 'IndexNow (api.indexnow.org)'],
-                                                ['id' => 'https://yandex.com/indexnow', 'text' => 'Yandex (yandex.com)'],
-                                                ['id' => 'https://search.seznam.cz/indexnow', 'text' => 'Seznam (seznam.cz)']
-                                            ];
-                                            $currentEndpoint = defined('ZX_INDEXNOW_ENDPOINT') ? ZX_INDEXNOW_ENDPOINT : 'https://www.bing.com/indexnow';
-                                            echo zen_draw_pull_down_menu('indexnow_endpoint', $endpointOptions, $currentEndpoint, 'class="form-control" id="indexnow_endpoint"');
+                                            $currentEndpoint = defined('ZX_INDEXNOW_ENDPOINT') ? ZX_INDEXNOW_ENDPOINT : $zxIndexNowEndpoints[0]['id'];
+                                            echo zen_draw_pull_down_menu('indexnow_endpoint', $zxIndexNowEndpoints, $currentEndpoint, 'class="form-control" id="indexnow_endpoint"');
                                             ?>
                                         </div>
                                     </div>
