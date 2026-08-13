@@ -203,8 +203,16 @@ switch ($action) {
             foreach ($seo_meta as $langId => $data) {
                 $safeLangId = (int)$langId;
 
+                // seo_meta[] is submitted nested (seo_meta[langId][meta_title]), which
+                // AdminRequestSanitizer's registration for 'meta_title' etc can't match,
+                // so these fall through to core's default strict sanitization and arrive HTML-entity-encoded.
+                // meta_description is decoded here because it's redisplayed via a <textarea> that 
+                // escapes on render (see the Metadata Editor tab below). And we want to avoid double-encode
+                // 
+                // meta_title/focus_keyword/custom_canonical have the same underlying defect
+                // but are tracked separately (they're <input> fields, not <textarea>).
                 $metaTitle = zen_db_prepare_input($data['meta_title'] ?? '');
-                $metaDescription = zen_db_prepare_input($data['meta_description'] ?? '');
+                $metaDescription = htmlspecialchars_decode(zen_db_prepare_input($data['meta_description'] ?? ''));
                 $focusKeyword = zen_db_prepare_input($data['focus_keyword'] ?? '');
                 $customCanonical = zen_db_prepare_input($data['custom_canonical'] ?? '');
                 $isNoindex = isset($data['is_noindex']) ? 1 : 0;
@@ -453,6 +461,13 @@ switch ($action) {
         // define which keys are allowed to contain leading/trailing spaces
         $divider_keys = ['PRIMARY_SECTION', 'SECONDARY_SECTION', 'TERTIARY_SECTION', 'METATAGS_DIVIDER'];
 
+        // global_seo[] is submitted nested (global_seo[langId][KEY]), and none of its keys are
+        // registered with AdminRequestSanitizer, so all are HTML-entity-encoded by core processing.
+        // These two are decoded here because they're redisplayed via <textarea> fields that escape on render 
+        // (Global Settings tab below) - an encode-then-escape would double up. The other global_seo keys
+        // have the same underlying defect but are <input> fields, tracked separately.
+        $decode_keys = ['HOME_PAGE_META_DESCRIPTION', 'HOME_PAGE_META_KEYWORDS'];
+
         foreach ($global_seo as $lang_id => $keys) {
             $safe_lang_id = (int)$lang_id;
             foreach ($keys as $key => $value) {
@@ -463,6 +478,10 @@ switch ($action) {
                     $safe_value = $value; // zen_db_input() in the query will still safely escape this
                 } else {
                     $safe_value = zen_db_prepare_input($value);
+                }
+
+                if (in_array($safe_key, $decode_keys, true)) {
+                    $safe_value = htmlspecialchars_decode($safe_value);
                 }
 
                 // insert or update the value for the specific language
