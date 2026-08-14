@@ -7,4 +7,8 @@ return [
     'pluginDescription' => 'A centralized, fully encapsulated on-site SEO suite for Zen Cart.',
     'pluginAuthor' => 'ZenExpert',
     'pluginId' => 0,
+    'zcVersions' => ['v2.1.0', 'v2.2.0', 'v2.2.2', 'v2.2.3'], // compatible versions of Zen Cart
+    'changelog' => '', // online URL (eg github release tag page, or changelog file there) or local filename only, ie: changelog.txt (in same dir as this manifest file)
+    'github_repo' => '', // url
+    'pluginGroups' => [],
 ];
