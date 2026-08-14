@@ -35,7 +35,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         // Create the SEO redirects table
         $sql = "CREATE TABLE IF NOT EXISTS " . TABLE_ZX_SEO_REDIRECTS . " (
             id int(11) NOT NULL AUTO_INCREMENT,
-            source_url varchar(255) NOT NULL,
+            source_url varchar(191) NOT NULL,
             target_url varchar(255) NOT NULL,
             date_added datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (id),
