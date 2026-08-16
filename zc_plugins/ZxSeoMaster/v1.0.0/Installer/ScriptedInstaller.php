@@ -29,7 +29,7 @@ class ScriptedInstaller extends ScriptedInstallBase
                   updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                   PRIMARY KEY (id),
                   UNIQUE KEY idx_entity_lang (entity_type, entity_id, language_id)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;";
+                ) ENGINE=MyISAM;";
         $this->executeInstallerSql($sql);
 
         // Create the SEO redirects table
@@ -40,7 +40,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             date_added datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (id),
             UNIQUE KEY idx_source_url (source_url)
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;";
+            ) ENGINE=MyISAM;";
         $this->executeInstallerSql($sql);
 
         // Create the global SEO table
@@ -49,7 +49,7 @@ class ScriptedInstaller extends ScriptedInstallBase
                   language_id int(11) NOT NULL DEFAULT 1,
                   config_value text NOT NULL,
                   PRIMARY KEY (config_key, language_id)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;";
+                ) ENGINE=MyISAM;";
         $this->executeInstallerSql($sql);
 
         // Insert the Default Keys
@@ -72,7 +72,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         }
 
         // Add configuration key for custom meta tags
-        $sql = "INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('ZX SEO Custom Meta Tags', 'ZX_SEO_MASTER_CUSTOM_META_TAGS', '', 'Global custom meta tags injected into the HTML head.', 6, 1, now()) ON DUPLICATE KEY UPDATE configuration_value=configuration_value";
+        $sql = "INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('ZX SEO Custom Meta Tags', 'ł', '', 'Global custom meta tags injected into the HTML head.', 6, 1, now()) ON DUPLICATE KEY UPDATE configuration_value=configuration_value";
         $this->executeInstallerSql($sql);
 
         // Add configuration key for custom footer tags
