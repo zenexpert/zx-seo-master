@@ -15,16 +15,12 @@ $define = [
     'TEXT_LABEL_NOFOLLOW' => '<strong>NoFollow</strong> (Do not follow links on page)',
     'TEXT_ROBOTS_NOFOLLOW' => 'Prevent search engines from following links on this page (nofollow)',
     'BUTTON_SAVE_METADATA' => 'Save Metadata Settings',
-    'SUCCESS_SETTINGS_SAVED' => 'Success: SEO Settings have been updated.',
-    'ERROR_MISSING_DATA' => 'Error: Required fields are missing.',
     'TEXT_CUSTOM_CANONICAL' => 'Custom Canonical URL',
     'TEXT_CUSTOM_CANONICAL_HELP' => 'Leave blank to use the default Zen Cart canonical URL. Enter a full URL (including https://) to override.',
 
     'TEXT_ROBOTS_TXT_EDITOR' => 'robots.txt Editor',
     'TEXT_ROBOTS_TXT_CONTENT' => 'Edit your robots.txt file directly. Ensure the file is writable by the server.',
     'BUTTON_SAVE_ROBOTS' => 'Save robots.txt',
-    'SUCCESS_ROBOTS_SAVED' => 'Success: robots.txt has been successfully updated.',
-    'ERROR_ROBOTS_NOT_WRITABLE' => 'Error: robots.txt is not writable or does not exist at the root. Please check file permissions.',
     'TEXT_SITEMAP_INFO' => 'Dynamic XML Sitemap',
     'TEXT_SITEMAP_URL' => 'Your dynamic sitemap is automatically generated at:',
 
