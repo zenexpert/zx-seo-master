@@ -72,7 +72,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         }
 
         // Add configuration key for custom meta tags
-        $sql = "INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('ZX SEO Custom Meta Tags', 'ł', '', 'Global custom meta tags injected into the HTML head.', 6, 1, now()) ON DUPLICATE KEY UPDATE configuration_value=configuration_value";
+        $sql = "INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('ZX SEO Custom Meta Tags', 'ZX_SEO_MASTER_CUSTOM_META_TAGS', '', 'Global custom meta tags injected into the HTML head.', 6, 1, now()) ON DUPLICATE KEY UPDATE configuration_value=configuration_value";
         $this->executeInstallerSql($sql);
 
         // Add configuration key for custom footer tags
