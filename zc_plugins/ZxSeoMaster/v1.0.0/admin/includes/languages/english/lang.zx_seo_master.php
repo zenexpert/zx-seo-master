@@ -10,7 +10,6 @@ $define = [
     'TEXT_META_DESCRIPTION' => 'Meta Description',
     'TEXT_LIVE_SNIPPET_PREVIEW' => 'Live Snippet Preview',
     'TEXT_FOCUS_KEYWORD' => 'Focus Keyword (Internal use only)',
-    'TEXT_SCHEMA_MARKUP' => 'JSON-LD Schema Markup',
     'TEXT_LABEL_NOINDEX' => '<strong>NoIndex</strong> (Hide from search engines)',
     'TEXT_ROBOTS_NOINDEX' => 'Prevent search engines from indexing this page (noindex)',
     'TEXT_LABEL_NOFOLLOW' => '<strong>NoFollow</strong> (Do not follow links on page)',

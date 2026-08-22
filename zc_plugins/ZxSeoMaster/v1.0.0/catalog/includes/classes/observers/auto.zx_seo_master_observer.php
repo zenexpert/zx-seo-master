@@ -60,7 +60,7 @@ class zcObserverZxSeoMasterObserver extends \base
         }
 
         if ($entityType !== '' && $entityId > 0) {
-            $sql = "SELECT meta_title, meta_description, custom_canonical, is_noindex, is_nofollow, schema_markup
+            $sql = "SELECT meta_title, meta_description, custom_canonical, is_noindex, is_nofollow
                     FROM " . TABLE_ZX_SEO_METADATA . "
                     WHERE entity_type = :entityType
                     AND entity_id = :entityId
