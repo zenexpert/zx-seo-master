@@ -1175,7 +1175,7 @@ foreach ($globals_query as $global) {
                                     <!-- Language Tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                         <?php foreach ($languages as $index => $lang) { ?>
-                                            <li role="presentation" class="<?= ($_SESSION['language'] === strtolower($lang['name'])) ? 'active' : '' ?>">
+                                            <li role="presentation" class="<?= ($_SESSION['languages_id'] === (int)$lang['id']) ? 'active' : '' ?>">
                                                 <a href="#seo_lang_<?= $lang['id'] ?>" aria-controls="seo_lang_<?= $lang['id'] ?>" role="tab" data-toggle="tab">
                                                     <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $lang['directory'] . '/images/' . $lang['image'], $lang['name']) . ' ' . $lang['name']; ?>
                                                 </a>
@@ -1188,7 +1188,7 @@ foreach ($globals_query as $global) {
                                         <?php foreach ($languages as $index => $lang) {
                                             $lID = (int)$lang['id'];
                                             ?>
-                                            <div role="tabpanel" class="tab-pane <?php echo ($_SESSION['language'] === strtolower($lang['name'])) ? 'active' : ''; ?>" id="seo_lang_<?= $lID ?>">
+                                            <div role="tabpanel" class="tab-pane <?= ($_SESSION['languages_id'] === (int)$lang['id']) ? 'active' : '' ?>" id="seo_lang_<?= $lID ?>">
 
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -1461,7 +1461,7 @@ foreach ($globals_query as $global) {
                     <!-- Language Tabs for SEO Data -->
                     <ul class="nav nav-tabs" role="tablist">
                         <?php foreach ($languages as $index => $lang) { ?>
-                            <li role="presentation" class="<?= ($_SESSION['language'] === strtolower($lang['name'])) ? 'active' : '' ?>">
+                            <li role="presentation" class="<?= ($_SESSION['languages_id'] === (int)$lang['id']) ? 'active' : '' ?>">
                                 <a href="#entity_lang_<?= $lang['id'] ?>" aria-controls="entity_lang_<?= $lang['id'] ?>" role="tab" data-toggle="tab">
                                     <?= zen_image(DIR_WS_CATALOG_LANGUAGES . $lang['directory'] . '/images/' . $lang['image'], $lang['name']) . ' ' . $lang['name'] ?>
                                 </a>
@@ -1474,7 +1474,7 @@ foreach ($globals_query as $global) {
                         <?php foreach ($languages as $index => $lang) {
                             $lID = (int)$lang['id'];
                             ?>
-                            <div role="tabpanel" class="tab-pane <?php echo ($_SESSION['language'] === strtolower($lang['name'])) ? 'active' : ''; ?>" id="entity_lang_<?= $lID ?>">
+                            <div role="tabpanel" class="tab-pane <?= ($_SESSION['languages_id'] === (int)$lang['id']) ? 'active' : '' ?>" id="entity_lang_<?= $lID ?>">
 
                                 <div class="row">
                                     <div class="col-md-7">
