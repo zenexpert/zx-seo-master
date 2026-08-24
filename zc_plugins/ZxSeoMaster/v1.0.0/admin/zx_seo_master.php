@@ -83,12 +83,12 @@ if ($entityId > 0) {
         foreach ($meta_query as $meta) {
             $lID = (int)$meta['language_id'];
             $entity_metadata[$lID] = [
-                'meta_title' => $meta['meta_title'],
-                'meta_description' => $meta['meta_description'],
-                'focus_keyword' => $meta['focus_keyword'],
-                'custom_canonical' => $meta['custom_canonical'],
-                'is_noindex' => $meta['is_noindex'],
-                'is_nofollow' => $meta['is_nofollow']
+                    'meta_title' => $meta['meta_title'],
+                    'meta_description' => $meta['meta_description'],
+                    'focus_keyword' => $meta['focus_keyword'],
+                    'custom_canonical' => $meta['custom_canonical'],
+                    'is_noindex' => $meta['is_noindex'],
+                    'is_nofollow' => $meta['is_nofollow']
             ];
         }
     }
@@ -111,15 +111,15 @@ if ($entityId > 0) {
             $displayPrice = $currencies->display_price($ctxRes->fields['products_price'], zen_get_tax_rate($ctxRes->fields['products_tax_class_id']));
 
             $contextData = [
-                'title' => $ctxRes->fields['products_name'] . ' [' . $ctxRes->fields['products_model'] . ']',
-                'subtitle' => 'Price: ' . $displayPrice,
-                'image' => $ctxRes->fields['products_image'],
-                'admin_link' => zen_href_link('product', 'action=new_product&pID=' . $entityId),
-                'catalog_link' => zen_catalog_href_link(zen_get_info_page($entityId), 'products_id=' . $entityId, 'NONSSL'),
+                    'title' => $ctxRes->fields['products_name'] . ' [' . $ctxRes->fields['products_model'] . ']',
+                    'subtitle' => 'Price: ' . $displayPrice,
+                    'image' => $ctxRes->fields['products_image'],
+                    'admin_link' => zen_href_link('product', 'action=new_product&pID=' . $entityId),
+                    'catalog_link' => zen_catalog_href_link(zen_get_info_page($entityId), 'products_id=' . $entityId, 'NONSSL'),
                 // Raw data for the JavaScript Live Preview Dictionary
-                'raw_name' => $ctxRes->fields['products_name'],
-                'raw_model' => $ctxRes->fields['products_model'],
-                'raw_price' => strip_tags($displayPrice)
+                    'raw_name' => $ctxRes->fields['products_name'],
+                    'raw_model' => $ctxRes->fields['products_model'],
+                    'raw_price' => strip_tags($displayPrice)
             ];
         }
     } elseif ($entityType === 'category') {
@@ -134,15 +134,15 @@ if ($entityId > 0) {
         if (!$ctxRes->EOF) {
             $cPath = zen_get_generated_category_path_rev($entityId);
             $contextData = [
-                'title' => $ctxRes->fields['categories_name'],
-                'subtitle' => 'Category ID: ' . $entityId,
-                'image' => $ctxRes->fields['categories_image'],
-                'admin_link' => zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath),
-                'catalog_link' => zen_catalog_href_link(FILENAME_DEFAULT, 'cPath=' . $cPath, 'NONSSL'),
+                    'title' => $ctxRes->fields['categories_name'],
+                    'subtitle' => 'Category ID: ' . $entityId,
+                    'image' => $ctxRes->fields['categories_image'],
+                    'admin_link' => zen_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath),
+                    'catalog_link' => zen_catalog_href_link(FILENAME_DEFAULT, 'cPath=' . $cPath, 'NONSSL'),
                 // Raw data for the JavaScript Live Preview Dictionary
-                'raw_name' => $ctxRes->fields['categories_name'],
-                'raw_model' => '',
-                'raw_price' => ''
+                    'raw_name' => $ctxRes->fields['categories_name'],
+                    'raw_model' => '',
+                    'raw_price' => ''
             ];
         }
     } elseif ($entityType === 'manufacturer') {
@@ -154,15 +154,15 @@ if ($entityId > 0) {
 
         if (!$ctxRes->EOF) {
             $contextData = [
-                'title' => $ctxRes->fields['manufacturers_name'],
-                'subtitle' => 'Manufacturer ID: ' . $entityId,
-                'image' => $ctxRes->fields['manufacturers_image'],
-                'admin_link' => zen_href_link(FILENAME_MANUFACTURERS, 'mID=' . $entityId . '&action=edit'),
-                'catalog_link' => zen_catalog_href_link(FILENAME_DEFAULT, 'manufacturers_id=' . $entityId, 'NONSSL'),
+                    'title' => $ctxRes->fields['manufacturers_name'],
+                    'subtitle' => 'Manufacturer ID: ' . $entityId,
+                    'image' => $ctxRes->fields['manufacturers_image'],
+                    'admin_link' => zen_href_link(FILENAME_MANUFACTURERS, 'mID=' . $entityId . '&action=edit'),
+                    'catalog_link' => zen_catalog_href_link(FILENAME_DEFAULT, 'manufacturers_id=' . $entityId, 'NONSSL'),
                 // Raw data for the JavaScript Live Preview Dictionary
-                'raw_name' => $ctxRes->fields['manufacturers_name'],
-                'raw_model' => '',
-                'raw_price' => ''
+                    'raw_name' => $ctxRes->fields['manufacturers_name'],
+                    'raw_model' => '',
+                    'raw_price' => ''
             ];
         }
     } elseif ($entityType === 'ezpage') {
@@ -176,15 +176,15 @@ if ($entityId > 0) {
 
         if (!$ctxRes->EOF) {
             $contextData = [
-                'title' => $ctxRes->fields['pages_title'],
-                'subtitle' => 'EZ-Page ID: ' . $entityId,
-                'image' => '',
-                'admin_link' => zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=new&eID=' . $entityId),
-                'catalog_link' => zen_catalog_href_link(FILENAME_EZPAGES, 'id=' . $entityId, 'NONSSL'),
+                    'title' => $ctxRes->fields['pages_title'],
+                    'subtitle' => 'EZ-Page ID: ' . $entityId,
+                    'image' => '',
+                    'admin_link' => zen_href_link(FILENAME_EZPAGES_ADMIN, 'action=new&eID=' . $entityId),
+                    'catalog_link' => zen_catalog_href_link(FILENAME_EZPAGES, 'id=' . $entityId, 'NONSSL'),
                 // Raw data for the JavaScript Live Preview Dictionary
-                'raw_name' => $ctxRes->fields['pages_title'],
-                'raw_model' => '',
-                'raw_price' => ''
+                    'raw_name' => $ctxRes->fields['pages_title'],
+                    'raw_model' => '',
+                    'raw_price' => ''
             ];
         }
     }
@@ -195,10 +195,10 @@ $robotsPath = DIR_FS_CATALOG . 'robots.txt';
 // Allow-list of IndexNow endpoints. Only known IndexNow-participating services may ever be persisted here
 // This should never be an arbitrary admin-supplied URL.
 $zxIndexNowEndpoints = [
-    ['id' => 'https://www.bing.com/indexnow', 'text' => 'Bing (bing.com)'],
-    ['id' => 'https://api.indexnow.org/indexnow', 'text' => 'IndexNow (api.indexnow.org)'],
-    ['id' => 'https://yandex.com/indexnow', 'text' => 'Yandex (yandex.com)'],
-    ['id' => 'https://search.seznam.cz/indexnow', 'text' => 'Seznam (seznam.cz)'],
+        ['id' => 'https://www.bing.com/indexnow', 'text' => 'Bing (bing.com)'],
+        ['id' => 'https://api.indexnow.org/indexnow', 'text' => 'IndexNow (api.indexnow.org)'],
+        ['id' => 'https://yandex.com/indexnow', 'text' => 'Yandex (yandex.com)'],
+        ['id' => 'https://search.seznam.cz/indexnow', 'text' => 'Seznam (seznam.cz)'],
 ];
 
 // actions
@@ -218,9 +218,9 @@ switch ($action) {
                  * All are decoded here so the stored value matches what the admin actually typed:
                  * meta_title/focus_keyword/custom_canonical render via <input> fields, which
                  * always html-escape their value on redisplay (zen_draw_input_field())
-                 * regardless of what's stored, so without this any of them containing &, <, >, or " 
-                 * showed as literal &amp;/&lt; garbage in the edit form. 
-                 * meta_description renders via a <textarea> that escapes on render instead 
+                 * regardless of what's stored, so without this any of them containing &, <, >, or "
+                 * showed as literal &amp;/&lt; garbage in the edit form.
+                 * meta_description renders via a <textarea> that escapes on render instead
                  * (see the Metadata Editor tab below) - same reasoning, different field type.
                  */
                 $metaTitle = htmlspecialchars_decode(zen_db_prepare_input($data['meta_title'] ?? ''));
@@ -231,15 +231,15 @@ switch ($action) {
                 $isNofollow = isset($data['is_nofollow']) ? 1 : 0;
 
                 $sqlDataArray = [
-                    'entity_type' => $entityType,
-                    'entity_id' => $entityId,
-                    'language_id' => $safeLangId,
-                    'meta_title' => $metaTitle,
-                    'meta_description' => $metaDescription,
-                    'focus_keyword' => $focusKeyword,
-                    'custom_canonical' => $customCanonical,
-                    'is_noindex' => $isNoindex,
-                    'is_nofollow' => $isNofollow,
+                        'entity_type' => $entityType,
+                        'entity_id' => $entityId,
+                        'language_id' => $safeLangId,
+                        'meta_title' => $metaTitle,
+                        'meta_description' => $metaDescription,
+                        'focus_keyword' => $focusKeyword,
+                        'custom_canonical' => $customCanonical,
+                        'is_noindex' => $isNoindex,
+                        'is_nofollow' => $isNofollow,
                 ];
 
                 $checkSql = "SELECT id FROM " . TABLE_ZX_SEO_METADATA . "
@@ -336,8 +336,8 @@ switch ($action) {
                             $displayText .= ' (' . $r['model'] . ')';
                         }
                         $results[] = [
-                            'id' => $r['id'],
-                            'text' => $displayText
+                                'id' => $r['id'],
+                                'text' => $displayText
                         ];
                     }
                 }
@@ -397,10 +397,10 @@ switch ($action) {
         if ($check->RecordCount() > 0 && !$overwrite) {
             // collision detected - save inputs to session and ask for overwrite confirmation.
             $_SESSION['zx_redirect_draft'] = [
-                'rID' => $rID,
-                'source_url' => $sourceUrl,
-                'target_url' => $targetUrl,
-                'collision' => true
+                    'rID' => $rID,
+                    'source_url' => $sourceUrl,
+                    'target_url' => $targetUrl,
+                    'collision' => true
             ];
             $messageStack->add_session(WARNING_REDIRECT_COLLISION, 'warning');
             zen_redirect(zen_href_link(FILENAME_ZX_SEO_MASTER) . '#redirects');
@@ -408,9 +408,9 @@ switch ($action) {
 
         // proceed with Save or Overwrite
         $sqlDataArray = [
-            'source_url' => $sourceUrl,
-            'target_url' => $targetUrl,
-            'date_added' => 'now()'
+                'source_url' => $sourceUrl,
+                'target_url' => $targetUrl,
+                'date_added' => 'now()'
         ];
 
         if ($check->RecordCount() > 0 && $overwrite) {
@@ -446,11 +446,17 @@ switch ($action) {
 
     case 'save_global_head':
         $customMeta = trim($_POST['custom_meta_tags'] ?? '');
+        $globalNoindex = isset($_POST['global_noindex']) ? '1' : '0';
+        $globalNofollow = isset($_POST['global_nofollow']) ? '1' : '0';
 
-        // update the value
+        // update custom meta
         $updateSql = "UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = :meta WHERE configuration_key = 'ZX_SEO_MASTER_CUSTOM_META_TAGS'";
         $updateSql = $db->bindVars($updateSql, ':meta', $customMeta, 'string');
         $db->Execute($updateSql);
+
+        // update global robots directives
+        $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $globalNoindex . "' WHERE configuration_key = 'ZX_SEO_MASTER_GLOBAL_NOINDEX'");
+        $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $globalNofollow . "' WHERE configuration_key = 'ZX_SEO_MASTER_GLOBAL_NOFOLLOW'");
 
         $messageStack->add_session(SUCCESS_GLOBAL_HEAD_SAVED, 'success');
         zen_redirect(zen_href_link(FILENAME_ZX_SEO_MASTER) . '#settings');
@@ -562,8 +568,8 @@ switch ($action) {
         $file_path = DIR_FS_CATALOG . 'llms.txt';
 
         // site_name/description/custom_guidance are already HTML-entity-encoded by this point.
-        // Decode before handing them to LlmsTxtGenerator, which applies its own 
-        // markdown-specific escaping (sanitizeMarkdown()) and expects real characters, 
+        // Decode before handing them to LlmsTxtGenerator, which applies its own
+        // markdown-specific escaping (sanitizeMarkdown()) and expects real characters,
         // otherwise a name/value containing &, <, >, ' or " renders as literal &amp;/&lt; garbage in the generated llms.txt.
         $site_name = htmlspecialchars_decode(zen_db_prepare_input($_POST['site_name']));
         $description = htmlspecialchars_decode(zen_db_prepare_input($_POST['description']));
@@ -575,9 +581,9 @@ switch ($action) {
         if (isset($_POST['guidance_options']) && is_array($_POST['guidance_options'])) {
             // Re-map default guidance for the controller scope
             $default_guidance = [
-                'prioritize_products' => TEXT_LLMS_MANAGER_GUIDE_PRIORITIZE_PRODUCTS,
-                'short_descriptions' => TEXT_LLMS_MANAGER_GUIDE_SHORT_DESCRIPTIONS,
-                'shipping_focus' => TEXT_LLMS_MANAGER_GUIDE_SHIPPING_FOCUS
+                    'prioritize_products' => TEXT_LLMS_MANAGER_GUIDE_PRIORITIZE_PRODUCTS,
+                    'short_descriptions' => TEXT_LLMS_MANAGER_GUIDE_SHORT_DESCRIPTIONS,
+                    'shipping_focus' => TEXT_LLMS_MANAGER_GUIDE_SHIPPING_FOCUS
             ];
             foreach ($_POST['guidance_options'] as $g_key) {
                 if (isset($default_guidance[$g_key])) $generator->addGuidance($default_guidance[$g_key]);
@@ -622,9 +628,9 @@ switch ($action) {
                 $cat_name = zen_get_category_name($cID, $_SESSION['languages_id']);
                 $raw_url = htmlspecialchars_decode(zen_catalog_href_link(FILENAME_DEFAULT, 'cPath=' . $cID));
                 $cat_links[] = [
-                    'url' => $raw_url,
-                    'title' => $cat_name,
-                    'desc' => TEXT_LLMS_MANAGER_LABEL_PRIORITY_CATEGORIES_DESCRIPTION  . $cat_name
+                        'url' => $raw_url,
+                        'title' => $cat_name,
+                        'desc' => TEXT_LLMS_MANAGER_LABEL_PRIORITY_CATEGORIES_DESCRIPTION  . $cat_name
                 ];
             }
         }
@@ -644,9 +650,9 @@ switch ($action) {
                     if (!empty($clean_name) && !in_array($clean_name, $seen_names)) {
                         $raw_url = htmlspecialchars_decode(zen_catalog_href_link(FILENAME_DEFAULT, 'manufacturers_id=' . $mID));
                         $brand_links[] = [
-                            'url' => $raw_url,
-                            'title' => $clean_name,
-                            'desc' => TEXT_LLMS_MANAGER_LABEL_PRIORITY_BRANDS_DESCRIPTION . $clean_name
+                                'url' => $raw_url,
+                                'title' => $clean_name,
+                                'desc' => TEXT_LLMS_MANAGER_LABEL_PRIORITY_BRANDS_DESCRIPTION . $clean_name
                         ];
                         $seen_names[] = $clean_name;
                     }
@@ -667,9 +673,9 @@ switch ($action) {
                     if ($p_name) {
                         $raw_url = htmlspecialchars_decode(zen_catalog_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $pID));
                         $prod_links[] = [
-                            'url' => $raw_url,
-                            'title' => $p_name,
-                            'desc' => TEXT_LLMS_MANAGER_LABEL_PRODUCT_IDS_DESCRIPTION
+                                'url' => $raw_url,
+                                'title' => $p_name,
+                                'desc' => TEXT_LLMS_MANAGER_LABEL_PRODUCT_IDS_DESCRIPTION
                         ];
                     }
                 }
@@ -694,9 +700,9 @@ switch ($action) {
         $de_items = [];
         if (isset($_POST['de_options']) && is_array($_POST['de_options'])) {
             $default_deemphasis = [
-                'search_results' => TEXT_LLMS_MANAGER_DE_SEARCH_RESULTS,
-                'filtered_urls' => TEXT_LLMS_MANAGER_DE_FILTERED_URLS,
-                'thin_content' => TEXT_LLMS_MANAGER_DE_THIN_CONTENT
+                    'search_results' => TEXT_LLMS_MANAGER_DE_SEARCH_RESULTS,
+                    'filtered_urls' => TEXT_LLMS_MANAGER_DE_FILTERED_URLS,
+                    'thin_content' => TEXT_LLMS_MANAGER_DE_THIN_CONTENT
             ];
             foreach ($_POST['de_options'] as $d_key) {
                 if (isset($default_deemphasis[$d_key])) $de_items[] = $default_deemphasis[$d_key];
@@ -785,13 +791,13 @@ switch ($action) {
         }
 
         die(json_encode([
-            'success' => true,
-            'title' => $title,
-            'content' => strip_tags($content),
-            'nativeMetaTitle' => $nativeMetaTitle,
-            'nativeMetaDesc' => $nativeMetaDesc,
-            'customMetaTitle' => $customMetaTitle,
-            'customMetaDesc' => $customMetaDesc
+                'success' => true,
+                'title' => $title,
+                'content' => strip_tags($content),
+                'nativeMetaTitle' => $nativeMetaTitle,
+                'nativeMetaDesc' => $nativeMetaDesc,
+                'customMetaTitle' => $customMetaTitle,
+                'customMetaDesc' => $customMetaDesc
         ]));
 
     case 'audit_missing_meta':
@@ -817,9 +823,9 @@ switch ($action) {
         $productResult = $db->Execute($productSql);
         foreach ($productResult as $product) {
             $missing[] = [
-                'id' => $product['id'],
-                'name' => $product['name'],
-                'type' => 'product'
+                    'id' => $product['id'],
+                    'name' => $product['name'],
+                    'type' => 'product'
             ];
         }
 
@@ -839,9 +845,9 @@ switch ($action) {
         $categoryResult = $db->Execute($categorySql);
         foreach ($categoryResult as $category) {
             $missing[] = [
-                'id' => $category['id'],
-                'name' => $category['name'],
-                'type' => 'category'
+                    'id' => $category['id'],
+                    'name' => $category['name'],
+                    'type' => 'category'
             ];
         }
 
@@ -866,12 +872,12 @@ switch ($action) {
 
             if ($check->EOF) {
                 $sqlDataArray = [
-                    'entity_type' => 'product',
-                    'entity_id' => $pID,
-                    'language_id' => $lID,
-                    'meta_title' => $prodMeta['metatags_title'],
-                    'meta_description' => $prodMeta['metatags_description'],
-                    'focus_keyword' => $prodMeta['metatags_keywords']
+                        'entity_type' => 'product',
+                        'entity_id' => $pID,
+                        'language_id' => $lID,
+                        'meta_title' => $prodMeta['metatags_title'],
+                        'meta_description' => $prodMeta['metatags_description'],
+                        'focus_keyword' => $prodMeta['metatags_keywords']
                 ];
                 zen_db_perform(TABLE_ZX_SEO_METADATA, $sqlDataArray);
                 $importedCount++;
@@ -893,12 +899,12 @@ switch ($action) {
 
             if ($check->EOF) {
                 $sqlDataArray = [
-                    'entity_type' => 'category',
-                    'entity_id' => $cID,
-                    'language_id' => $lID,
-                    'meta_title' => $catMeta['metatags_title'],
-                    'meta_description' => $catMeta['metatags_description'],
-                    'focus_keyword' => $catMeta['metatags_keywords']
+                        'entity_type' => 'category',
+                        'entity_id' => $cID,
+                        'language_id' => $lID,
+                        'meta_title' => $catMeta['metatags_title'],
+                        'meta_description' => $catMeta['metatags_description'],
+                        'focus_keyword' => $catMeta['metatags_keywords']
                 ];
                 zen_db_perform(TABLE_ZX_SEO_METADATA, $sqlDataArray);
                 $importedCount++;
@@ -1055,15 +1061,15 @@ $detect_sitemap = (file_exists(DIR_FS_CATALOG . 'sitemap.xml') ? 'sitemap.xml' :
 $detect_robots  = (file_exists(DIR_FS_CATALOG . 'robots.txt'));
 
 $default_guidance = [
-    'prioritize_products' => TEXT_LLMS_MANAGER_GUIDE_PRIORITIZE_PRODUCTS,
-    'short_descriptions' => TEXT_LLMS_MANAGER_GUIDE_SHORT_DESCRIPTIONS,
-    'shipping_focus' => TEXT_LLMS_MANAGER_GUIDE_SHIPPING_FOCUS
+        'prioritize_products' => TEXT_LLMS_MANAGER_GUIDE_PRIORITIZE_PRODUCTS,
+        'short_descriptions' => TEXT_LLMS_MANAGER_GUIDE_SHORT_DESCRIPTIONS,
+        'shipping_focus' => TEXT_LLMS_MANAGER_GUIDE_SHIPPING_FOCUS
 ];
 
 $default_deemphasis = [
-    'search_results' => TEXT_LLMS_MANAGER_DE_SEARCH_RESULTS,
-    'filtered_urls' => TEXT_LLMS_MANAGER_DE_FILTERED_URLS,
-    'thin_content' => TEXT_LLMS_MANAGER_DE_THIN_CONTENT
+        'search_results' => TEXT_LLMS_MANAGER_DE_SEARCH_RESULTS,
+        'filtered_urls' => TEXT_LLMS_MANAGER_DE_FILTERED_URLS,
+        'thin_content' => TEXT_LLMS_MANAGER_DE_THIN_CONTENT
 ];
 
 $cat_array = [];
@@ -1286,6 +1292,29 @@ foreach ($globals_query as $global) {
                                     ?>
 
                                     <?= zen_draw_form('zx_global_settings', FILENAME_ZX_SEO_MASTER, 'action=save_global_head', 'post') ?>
+
+                                    <div class="well well-sm">
+                                        <div class="checkbox">
+                                            <label>
+                                                <?php
+                                                $is_global_noindex = (defined('ZX_SEO_MASTER_GLOBAL_NOINDEX') && ZX_SEO_MASTER_GLOBAL_NOINDEX == '1');
+                                                echo zen_draw_checkbox_field('global_noindex', '1', $is_global_noindex, '', 'id="global_noindex"');
+                                                ?>
+                                                <?= TEXT_LABEL_GLOBAL_NOINDEX ?>
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <?php
+                                                $is_global_nofollow = (defined('ZX_SEO_MASTER_GLOBAL_NOFOLLOW') && ZX_SEO_MASTER_GLOBAL_NOFOLLOW == '1');
+                                                echo zen_draw_checkbox_field('global_nofollow', '1', $is_global_nofollow, '', 'id="global_nofollow"');
+                                                ?>
+                                                <?= TEXT_LABEL_GLOBAL_NOFOLLOW ?>
+                                            </label>
+                                        </div>
+                                        <p class="help-block mt-10"><i class="fa fa-warning text-danger"></i> <?= TEXT_GLOBAL_ROBOTS_HELP ?></p>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="custom_meta_tags"><?= TEXT_LABEL_CUSTOM_META_TAGS; ?></label>
                                         <?= zen_draw_textarea_field('custom_meta_tags', 'soft', '100%', '8', htmlspecialchars($customMetaTags, ENT_QUOTES, CHARSET), 'class="form-control monospace" id="custom_meta_tags" placeholder="<meta name=&quot;google-site-verification&quot; content=&quot;...&quot; />"') ?>
@@ -1343,8 +1372,8 @@ foreach ($globals_query as $global) {
                                             <label for="indexnow_status"><?= TEXT_LABEL_INDEXNOW_STATUS ?></label>
                                             <?php
                                             $statusOptions = [
-                                                ['id' => 'true', 'text' => TEXT_LABEL_INDEXNOW_STATUS_ENABLED],
-                                                ['id' => 'false', 'text' => TEXT_LABEL_INDEXNOW_STATUS_DISABLED]
+                                                    ['id' => 'true', 'text' => TEXT_LABEL_INDEXNOW_STATUS_ENABLED],
+                                                    ['id' => 'false', 'text' => TEXT_LABEL_INDEXNOW_STATUS_DISABLED]
                                             ];
                                             $currentStatus = defined('ZX_INDEXNOW_STATUS') ? ZX_INDEXNOW_STATUS : 'false';
                                             echo zen_draw_pull_down_menu('indexnow_status', $statusOptions, $currentStatus, 'class="form-control" id="indexnow_status"');
@@ -1400,10 +1429,10 @@ foreach ($globals_query as $global) {
                             echo zen_draw_label(TEXT_ENTITY_TYPE, 'entity_type', 'class="control-label"');
 
                             $typeOptions = [
-                                ['id' => 'product', 'text' => TEXT_METADATA_TYPE_PRODUCT],
-                                ['id' => 'category', 'text' => TEXT_METADATA_TYPE_CATEGORY],
-                                ['id' => 'ezpage', 'text' => TEXT_METADATA_TYPE_EZPAGE],
-                                ['id' => 'manufacturer', 'text' => TEXT_METADATA_TYPE_MANUFACTURER]
+                                    ['id' => 'product', 'text' => TEXT_METADATA_TYPE_PRODUCT],
+                                    ['id' => 'category', 'text' => TEXT_METADATA_TYPE_CATEGORY],
+                                    ['id' => 'ezpage', 'text' => TEXT_METADATA_TYPE_EZPAGE],
+                                    ['id' => 'manufacturer', 'text' => TEXT_METADATA_TYPE_MANUFACTURER]
                             ];
                             echo zen_draw_pull_down_menu('entity_type', $typeOptions, $entityType, 'class="form-control" id="entity_type"');
                             ?>

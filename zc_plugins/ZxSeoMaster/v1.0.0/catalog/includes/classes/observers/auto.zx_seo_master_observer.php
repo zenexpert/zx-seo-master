@@ -44,6 +44,11 @@ class zcObserverZxSeoMasterObserver extends \base
         $mainPage = $_GET['main_page'] ?? '';
         $langId = (int)($_SESSION['languages_id'] ?? 1);
 
+        $globalNoindex = (defined('ZX_SEO_MASTER_GLOBAL_NOINDEX') && ZX_SEO_MASTER_GLOBAL_NOINDEX == '1') ? 1 : 0;
+        $globalNofollow = (defined('ZX_SEO_MASTER_GLOBAL_NOFOLLOW') && ZX_SEO_MASTER_GLOBAL_NOFOLLOW == '1') ? 1 : 0;
+
+        $entityDataFound = false;
+
         if (isset($_GET['products_id'])) {
             $entityType = 'product';
             $entityId = (int)$_GET['products_id'];
@@ -73,6 +78,7 @@ class zcObserverZxSeoMasterObserver extends \base
             $result = $db->Execute($sql);
 
             if (!$result->EOF) {
+                $entityDataFound = true;
                 $rawTitle = (string)$result->fields['meta_title'];
                 $rawDesc = (string)$result->fields['meta_description'];
 
@@ -101,10 +107,22 @@ class zcObserverZxSeoMasterObserver extends \base
                     'meta_title' => $parsedTitle,
                     'meta_description' => $parsedDesc,
                     'custom_canonical' => $result->fields['custom_canonical'],
-                    'is_noindex' => (int)$result->fields['is_noindex'],
-                    'is_nofollow' => (int)$result->fields['is_nofollow'],
+                    // Global settings have priority over individual entity overrides
+                    'is_noindex' => $globalNoindex ? 1 : (int)$result->fields['is_noindex'],
+                    'is_nofollow' => $globalNofollow ? 1 : (int)$result->fields['is_nofollow'],
                 ];
             }
+        }
+
+        // Ensure the array is populated if global directives are active but no entity data was found
+        if (!$entityDataFound && ($globalNoindex || $globalNofollow)) {
+            $this->seoData = [
+                'meta_title' => '',
+                'meta_description' => '',
+                'custom_canonical' => '',
+                'is_noindex' => $globalNoindex,
+                'is_nofollow' => $globalNofollow,
+            ];
         }
     }
 
@@ -127,9 +145,12 @@ class zcObserverZxSeoMasterObserver extends \base
 
     private function injectHeadTags()
     {
-        $indexDirective = ($this->seoData['is_noindex'] === 1) ? 'noindex' : 'index';
-        $followDirective = ($this->seoData['is_nofollow'] === 1) ? 'nofollow' : 'follow';
+        // Safe check just in case the method is executed directly
+        if (isset($this->seoData['is_noindex']) && isset($this->seoData['is_nofollow'])) {
+            $indexDirective = ($this->seoData['is_noindex'] === 1) ? 'noindex' : 'index';
+            $followDirective = ($this->seoData['is_nofollow'] === 1) ? 'nofollow' : 'follow';
 
-        echo '<meta name="robots" content="' . $indexDirective . ', ' . $followDirective . '" />' . "\n";
+            echo '<meta name="robots" content="' . $indexDirective . ', ' . $followDirective . '" />' . "\n";
+        }
     }
 }

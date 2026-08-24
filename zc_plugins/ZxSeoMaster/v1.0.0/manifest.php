@@ -9,6 +9,6 @@ return [
     'pluginId' => 0,
     'zcVersions' => ['v2.1.0', 'v2.2.0', 'v2.2.2', 'v2.3.0'], // compatible versions of Zen Cart
     'changelog' => '', // online URL (eg github release tag page, or changelog file there) or local filename only, ie: changelog.txt (in same dir as this manifest file)
-    'github_repo' => '', // url
+    'github_repo' => 'https://github.com/zenexpert/zx-seo-master', // url
     'pluginGroups' => [],
 ];

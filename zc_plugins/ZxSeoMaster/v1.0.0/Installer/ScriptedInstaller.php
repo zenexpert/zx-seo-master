@@ -112,6 +112,22 @@ class ScriptedInstaller extends ScriptedInstallBase
             'sort_order' => 12,
         ]);
 
+        $this->addConfigurationKey('ZX_SEO_MASTER_GLOBAL_NOINDEX', [
+            'configuration_title' => 'Global Noindex',
+            'configuration_value' => '0',
+            'configuration_description' => 'Global Noindex Switch',
+            'configuration_group_id' => 6,
+            'sort_order' => 12,
+        ]);
+
+        $this->addConfigurationKey('ZX_SEO_MASTER_GLOBAL_NOFOLLOW', [
+            'configuration_title' => 'Global Nofollow',
+            'configuration_value' => '0',
+            'configuration_description' => 'Global Nofollow Switch',
+            'configuration_group_id' => 6,
+            'sort_order' => 12,
+        ]);
+
         // Deregister pages in case of an update/re-install to prevent duplicates
         zen_deregister_admin_pages([
             'zxSeoMaster',
