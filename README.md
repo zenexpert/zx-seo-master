@@ -111,3 +111,7 @@ Found a bug? Feel free to submit an issue or pull request.
 
 ## License
 GNU Public License V2.0
+
+
+## Screenshot
+<img width="1355" height="912" alt="social-login" src="https://github.com/user-attachments/assets/20d22739-fa07-46ff-9a02-bc728a12d14d" />
