@@ -1515,7 +1515,7 @@ foreach ($globals_query as $global) {
 
                                             <!-- Dynamic Variable Injectors -->
                                             <div class="mt-5 mb-10" style="font-size: 11px;">
-                                                <span class="text-muted">Insert Tag: </span>
+                                                <span class="text-muted"><?= TEXT_INSERT_TAG ?></span>
                                                 <a href="#" class="label label-default insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%SITE_NAME%">Site Name</a>
                                                 <a href="#" class="label label-default insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%SITE_TAGLINE%">Tagline</a>
 
