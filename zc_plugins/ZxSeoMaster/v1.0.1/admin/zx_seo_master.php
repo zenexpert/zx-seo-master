@@ -1516,17 +1516,17 @@ foreach ($globals_query as $global) {
                                             <!-- Dynamic Variable Injectors -->
                                             <div class="mt-5 mb-10" style="font-size: 11px;">
                                                 <span class="text-muted"><?= TEXT_INSERT_TAG ?></span>
-                                                <a href="#" class="label label-default insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%SITE_NAME%">Site Name</a>
-                                                <a href="#" class="label label-default insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%SITE_TAGLINE%">Tagline</a>
+                                                <a href="#" class="label label-default insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%SITE_NAME%"><?= TEXT_TAG_SITE_NAME ?></a>
+                                                <a href="#" class="label label-default insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%SITE_TAGLINE%"><?= TEXT_TAG_TAGLINE ?></a>
 
                                                 <?php if ($entityType === 'product') { ?>
-                                                    <a href="#" class="label label-primary insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%PRODUCT_NAME%">Product Name</a>
-                                                    <a href="#" class="label label-primary insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%PRODUCT_MODEL%">Model</a>
-                                                    <a href="#" class="label label-primary insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%PRODUCT_PRICE%">Price</a>
+                                                    <a href="#" class="label label-primary insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%PRODUCT_NAME%"><?= TEXT_TAG_PRODUCT_NAME ?></a>
+                                                    <a href="#" class="label label-primary insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%PRODUCT_MODEL%"><?= TEXT_TAG_PRODUCT_MODEL ?></a>
+                                                    <a href="#" class="label label-primary insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%PRODUCT_PRICE%"><?= TEXT_TAG_PRODUCT_PRICE ?></a>
                                                 <?php } ?>
 
                                                 <?php if ($entityType === 'category') { ?>
-                                                    <a href="#" class="label label-info insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%CATEGORY_NAME%">Category Name</a>
+                                                    <a href="#" class="label label-info insert-variable" data-target="meta_title_<?= $lID ?>" data-val="%CATEGORY_NAME%"><?= TEXT_TAG_CATEGORY ?></a>
                                                 <?php } ?>
                                             </div>
                                         </div>

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 /**
  * CLI execution script for ZxSeoMaster Sitemap Builder
- * Usage: php /path/to/store/zc_plugins/ZxSeoMaster/v1.0.0/cli/generate_sitemap.php
+ * Usage: php /path/to/store/zc_plugins/ZxSeoMaster/v1.0.1/cli/generate_sitemap.php
  */
 
 // Ensure this script is only run from the command line
@@ -17,7 +17,8 @@ $_SERVER['SCRIPT_FILENAME'] = __FILE__;
 require realpath(__DIR__ . '/../../../../admin/includes/application_top.php');
 
 // Include the builder class
-require_once DIR_FS_CATALOG . 'zc_plugins/ZxSeoMaster/v1.0.0/admin/includes/classes/class.zx_sitemap_builder.php';
+$path_info = dirname(__FILE__, 2);
+require_once $path_info . '/admin/includes/classes/class.zx_sitemap_builder.php';
 
 echo "Starting ZxSeoMaster Sitemap Generation...\n";
 
